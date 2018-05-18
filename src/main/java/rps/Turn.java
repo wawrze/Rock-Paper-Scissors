@@ -11,14 +11,14 @@ public final class Turn {
     private final boolean isPlayerWinner;
     private final boolean isDraw;
 
-    public Turn(final Figure playersChoice,int difficultyLevel, Figures figures){
+    public Turn(final Figure playersChoice,int difficultyLevel, FiguresSet figuresSet){
         this.playersChoice = playersChoice;
-        this.computersChoice = figures.getFigures().get(computerMove(playersChoice.getNumber(), difficultyLevel, figures) - 1);
+        this.computersChoice = figuresSet.getFigures().get(computerMove(playersChoice.getNumber(), difficultyLevel, figuresSet) - 1);
         if(playersChoice.equals(computersChoice))
             isDraw = true;
         else
             isDraw = false;
-        this.isPlayerWinner = figures.isPlayerWinning(playersChoice,computersChoice);
+        this.isPlayerWinner = figuresSet.isPlayerWinning(playersChoice,computersChoice);
     }
 
     public Figure getPlayersChoice() {
@@ -37,9 +37,9 @@ public final class Turn {
         return isDraw;
     }
 
-    private int computerMove(int playersChoice, int difficultyLevel, Figures figures){
+    private int computerMove(int playersChoice, int difficultyLevel, FiguresSet figuresSet){
         Random r = new Random();
-        List<Figure> figuresList = figures.getFigures();
+        List<Figure> figuresList = figuresSet.getFigures();
         List<Figure> modifiedList = new ArrayList<>(figuresList);
         if(difficultyLevel == 1){
             for(Figure f : figuresList)

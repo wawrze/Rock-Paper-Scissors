@@ -10,13 +10,13 @@ public class TurnTestSuite {
     @Test
     public void testEasyGame(){
         //Given
-        Figures figures = new Figures();
+        FiguresSet figuresSet = new FiguresSet();
         int numberOfWins = 0;
         double winsShare;
         Turn turn;
         //When
         for(int i = 0;i < numberOfGames;i++) {
-            turn = new Turn(figures.getFigures().get(0), 1, figures);
+            turn = new Turn(figuresSet.getFigures().get(0), 1, figuresSet);
             numberOfWins += turn.isPlayerWinner() ? 1 : 0;
         }
         winsShare = (double) numberOfWins / (double) numberOfGames;
@@ -27,13 +27,13 @@ public class TurnTestSuite {
     @Test
     public void testMediumGame(){
         //Given
-        Figures figures = new Figures();
+        FiguresSet figuresSet = new FiguresSet();
         int numberOfWins = 0;
         double winsShare;
         Turn turn;
         //When
         for(int i = 0;i < numberOfGames;i++) {
-            turn = new Turn(figures.getFigures().get(0), 2, figures);
+            turn = new Turn(figuresSet.getFigures().get(0), 2, figuresSet);
             numberOfWins += turn.isPlayerWinner() ? 1 : 0;
         }
         winsShare = (double) numberOfWins / (double) numberOfGames;
@@ -44,13 +44,13 @@ public class TurnTestSuite {
     @Test
     public void testHardGame(){
         //Given
-        Figures figures = new Figures();
+        FiguresSet figuresSet = new FiguresSet();
         int numberOfWins = 0;
         double winsShare;
         Turn turn;
         //When
         for(int i = 0;i < numberOfGames;i++) {
-            turn = new Turn(figures.getFigures().get(0), 3, figures);
+            turn = new Turn(figuresSet.getFigures().get(0), 3, figuresSet);
             numberOfWins += turn.isPlayerWinner() ? 1 : 0;
         }
         winsShare = (double) numberOfWins / (double) numberOfGames;
@@ -62,11 +62,11 @@ public class TurnTestSuite {
     public void testGetters(){
         //Given
         Turn turn;
-        Figures figures = new Figures();
+        FiguresSet figuresSet = new FiguresSet();
         boolean result = true;
         //When
         for(int i = 0;i < numberOfGames;i++){
-            turn = new Turn(figures.getFigures().get(0), 2, figures);
+            turn = new Turn(figuresSet.getFigures().get(0), 2, figuresSet);
             if(turn.isDraw())
                 result = result && turn.getComputersChoice().getNumber() == 1;
             else if(turn.isPlayerWinner())
@@ -75,7 +75,7 @@ public class TurnTestSuite {
                 result = result && turn.getComputersChoice().getNumber() == 2;
             result = result && turn.getPlayersChoice().getNumber() == 1;
         }
-        result = result && figures.getFigures().get(0).getName().equals("Rock");
+        result = result && figuresSet.getFigures().get(0).getName().equals("Rock");
         //Then
         Assert.assertTrue(result);
     }
@@ -84,14 +84,14 @@ public class TurnTestSuite {
     public void testToString(){
         //Given
         Turn turn;
-        Figures figures = new Figures();
+        FiguresSet figuresSet = new FiguresSet();
         boolean result = true;
         String s1 = "player: Rock, computer: Rock, no one wins.";
         String s2 = "player: Rock, computer: Paper, computer wins.";
         String s3 = "player: Rock, computer: Scissors, player wins.";
         //When
         for(int i = 0;i < numberOfGames;i++) {
-            turn = new Turn(figures.getFigures().get(0), 2, figures);
+            turn = new Turn(figuresSet.getFigures().get(0), 2, figuresSet);
             if (turn.isDraw())
                 result = result && s1.equals("" + turn);
             else if (turn.isPlayerWinner())
