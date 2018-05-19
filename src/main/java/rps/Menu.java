@@ -1,19 +1,21 @@
 package rps;
 
-import java.util.InputMismatchException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Menu {
 
-    private static List<String> possibleOptions;
+    private List<String> possibleOptions;
+    private List<FiguresSet> figuresSets;
 
     public Menu(){
         possibleOptions = new LinkedList<>();
         possibleOptions.add("s");
 //        possibleOptions.add("l");
+        possibleOptions.add("c");
         possibleOptions.add("x");
+        figuresSets = new ArrayList<>();
     }
 
     public void start() {
@@ -32,6 +34,11 @@ public class Menu {
                 break;
 //            case "l":
 //                break;
+            case "c":
+                FiguresSet figuresSet = FiguresSetConstructor.start();
+                if(figuresSet != null)
+                    figuresSets.add(figuresSet);
+                break;
             case "x":
                 break;
             default:
